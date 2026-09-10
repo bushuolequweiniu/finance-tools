@@ -6,7 +6,7 @@ import pandas as pd
 from io import BytesIO
 from common import parse_amount  # 复用共享函数
 import streamlit as st
-st.set_page_config(layout="wide"）
+st.set_page_config(layout="wide")
 
 # ========== 银行名称映射（简称 → 标准名称） ==========
 BANK_NAME_MAP = {
