@@ -27,7 +27,7 @@ with c1:
         - 支持发票号二次匹配，结果可导出 Excel
         """
     )
-    st.page_link("pages/1_对账工具.py", label="👉 去对账 →", icon="🤖")
+    "st.page_link("pages/1_Reconciliation.py", label="👉 去对账", icon="💼")"
 
 with c2:
     st.subheader("💰 资金分配工具")
@@ -39,7 +39,7 @@ with c2:
         - 调拨清单可导出 Excel
         """
     )
-    st.page_link("pages/2_资金分配.py", label="👉 去分配资金 →", icon="💰")
+    st.page_link("pages/2_Allocation.py", label="👉 去分配资金 →", icon="💰")
 
 st.divider()
 st.caption("💡 提示：两个功能共享同一套数据，可先后配合使用。")
