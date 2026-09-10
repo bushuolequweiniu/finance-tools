@@ -205,7 +205,7 @@ def main():
             "变动（万元）": detail["变动（万元）"].astype(float).sum(),
             "资金流向": "",
         }])
-        st.dataframe(pd.concat([detail, detail_total], ignore_index=True),height=400, use_container_width=True, hide_index=True)
+        st.dataframe(pd.concat([detail, detail_total], ignore_index=True), height=400, use_container_width=True, hide_index=True)
 
         # ========== 资金调拨指令 ==========
         st.subheader("🔁 资金调拨指令（可编辑实际金额和备注）")
@@ -229,7 +229,7 @@ def main():
             edited_in = st.data_editor(
                 inflow[["银行", "变动（万元）", "实际调拨金额（万元）", "备注（自定义）"]],
                 use_container_width=True, num_rows="fixed", key="inflow_editor")
-            st.dataframe(with_total_row(edited_in),height=400, use_container_width=True, hide_index=True)
+            st.dataframe(with_total_row(edited_in), height=400, use_container_width=True, hide_index=True)
         with c2:
             st.markdown("#### 🔴 需转出")
             edited_out = st.data_editor(
