@@ -2,6 +2,7 @@
 """智能对账工具页面"""
 
 import streamlit as st
+st.set_page_config(layout="wide"
 import pandas as pd
 from common import (  # 复用共享函数
     parse_amount, normalize_name, find_col,
