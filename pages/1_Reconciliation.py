@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 """智能对账工具页面"""
 
-import streamlit as st
-st.set_page_config(layout="wide"
 import pandas as pd
 from common import (  # 复用共享函数
     parse_amount, normalize_name, find_col,
     extract_invoice_numbers, parse_date,
 )
-
+import streamlit as st
+st.set_page_config(layout="wide")
 
 def load_bank_data(uploaded_bank):
     """读取直联支付单（银行流水），支持多sheet，自动找表头"""
