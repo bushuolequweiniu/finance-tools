@@ -6,7 +6,7 @@ import pandas as pd
 from io import BytesIO
 from common import parse_amount  # 复用共享函数
 import streamlit as st
-st.set_page_config(layout="wide"
+st.set_page_config(layout="wide"）
 
 # ========== 银行名称映射（简称 → 标准名称） ==========
 BANK_NAME_MAP = {
@@ -146,7 +146,7 @@ def main():
     df_balance.columns = ["银行", "当前余额（万元）"]
 
     st.subheader(f"📊 当前余额（{selected_date}号）")
-    st.dataframe(df_balance, use_container_width=True, height=400)
+    st.dataframe(df_balance, width='stretch', height=400)
 
     # ========== 目标余额输入 ==========
     st.subheader("🎯 设定目标余额")
@@ -167,7 +167,7 @@ def main():
                         plan_df.at[idx, "目标余额（万元）"] = val
                     break
 
-    edited_plan = st.data_editor(plan_df, use_container_width=True, num_rows="fixed", key="plan_editor")
+    edited_plan = st.data_editor(plan_df, width='stretch', num_rows="fixed", key="plan_editor")
 
     # ========== 计算 ==========
     if "result" not in st.session_state:
@@ -205,7 +205,7 @@ def main():
             "变动（万元）": detail["变动（万元）"].astype(float).sum(),
             "资金流向": "",
         }])
-        st.dataframe(pd.concat([detail, detail_total], ignore_index=True), height=400, use_container_width=True, hide_index=True)
+        st.dataframe(pd.concat([detail, detail_total], ignore_index=True), height=400, width='stretch', hide_index=True)
 
         # ========== 资金调拨指令 ==========
         st.subheader("🔁 资金调拨指令（可编辑实际金额和备注）")
@@ -228,16 +228,16 @@ def main():
             st.markdown("#### 🟢 需转入")
             edited_in = st.data_editor(
                 inflow[["银行", "变动（万元）", "实际调拨金额（万元）", "备注（自定义）"]],
-                use_container_width=True, num_rows="fixed", key="inflow_editor")
-            st.dataframe(with_total_row(edited_in), height=400, use_container_width=True, hide_index=True)
+                width='stretch', num_rows="fixed", key="inflow_editor")
+            st.dataframe(with_total_row(edited_in), height=400, width='stretch', hide_index=True)
         with c2:
             st.markdown("#### 🔴 需转出")
             edited_out = st.data_editor(
                 outflow[["银行", "变动（万元）", "实际调拨金额（万元）", "备注（自定义）"]],
-                use_container_width=True, num_rows="fixed", key="outflow_editor")
+                width='stretch', num_rows="fixed", key="outflow_editor")
             st.dataframe(with_total_row(edited_out.assign(**{
                 "实际调拨金额（万元）": edited_out["实际调拨金额（万元）"].astype(float).abs()
-            })), use_container_width=True, height=400, hide_index=True)
+            })), width='stretch', height=400, hide_index=True)
 
         # 守恒校验
         in_total = edited_in["实际调拨金额（万元）"].astype(float).sum()
